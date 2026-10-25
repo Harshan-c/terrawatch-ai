@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Satellite, Upload, ScanSearch, FileDown, ShieldCheck, Activity, Image as ImageIcon, AlertTriangle, CheckCircle2, LoaderCircle, ArrowRight, Sparkles } from 'lucide-react';
 
-const API = 'http://127.0.0.1:8000';
+// Use the deployed backend on Vercel, with localhost as the development fallback.
+const API = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
 
 function formatBytes(bytes) {
   if (!bytes) return '';
