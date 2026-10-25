@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import cv2
 import numpy as np
 import base64
+import os
 from datetime import datetime, timezone
 
 app = FastAPI(
@@ -12,9 +13,22 @@ app = FastAPI(
     version="1.7.0",
 )
 
+# Set FRONTEND_URL in the Vercel backend project's Environment Variables to your
+# deployed frontend origin (for example, https://your-frontend.vercel.app).
+# The regex also permits Vercel preview domains; remove it if you want to allow
+# only explicitly listed origins.
+frontend_url = os.getenv("FRONTEND_URL", "").strip().rstrip("/")
+allowed_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+if frontend_url:
+    allowed_origins.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"https://[a-zA-Z0-9-]+(?:-[a-zA-Z0-9-]+)*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
