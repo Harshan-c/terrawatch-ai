@@ -1,0 +1,19 @@
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Python
+backend/.venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+
+# Local uploads and generated files
+uploads/
+*.log
+.DS_Store
