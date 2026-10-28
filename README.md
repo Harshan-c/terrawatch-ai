@@ -1,4 +1,4 @@
-# TerraWatch AI
+# TerraWatch AI [Non-Coder]
 
 A hackathon-ready satellite image change detection demo.
 
